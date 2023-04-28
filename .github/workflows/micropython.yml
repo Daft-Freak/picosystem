@@ -1,5 +1,5 @@
 name: MicroPython
- 
+
 on:
   push:
   pull_request:
@@ -87,8 +87,10 @@ jobs:
     - name: Store .uf2 as artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{github.event.repository.name}}-${{github.sha}}-micropython-${{env.MICROPYTHON_VERSION}}.*
-        path: micropython/ports/rp2/build-${{env.BOARD_TYPE}}/${{github.event.repository.name}}-${{github.sha}}-micropython-${{env.MICROPYTHON_VERSION}}.uf2
+        name: ${{github.event.repository.name}}-${{github.sha}}-micropython-${{env.MICROPYTHON_VERSION}}.uf2
+        path: |
+          micropython/ports/rp2/build-${{env.BOARD_TYPE}}/${{github.event.repository.name}}-${{github.sha}}-micropython-${{env.MICROPYTHON_VERSION}}.uf2
+          micropython/ports/rp2/build-${{env.BOARD_TYPE}}/firmware.*
 
     - name: Upload .uf2
       if: github.event_name == 'release'
